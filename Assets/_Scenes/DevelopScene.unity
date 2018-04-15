@@ -343,9 +343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5231e64a2dd29f44b7915fdc5751756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedCharacter: {fileID: 11400000, guid: dd5726fdc62b0a4409dd18849d2611a8, type: 2}
-  Player: {fileID: 0}
-  Character: {fileID: 0}
+  SelectedCharacters:
+  - {fileID: 11400000, guid: dd5726fdc62b0a4409dd18849d2611a8, type: 2}
   _PlayerPrefab: {fileID: 1500137400684570, guid: 1f179ebed03c7994a88fbca052dc9a26,
     type: 2}
   _SpawnLocation: {x: -6, y: -1, z: 0}

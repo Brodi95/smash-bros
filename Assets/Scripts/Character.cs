@@ -4,34 +4,39 @@ using UnityEngine;
 
 public class Character : MonoBehaviour {
 
+	#region Variables
 	public string PlayerNum = "P1";			// The number of the controller
 	public BaseCharacter _CharacterData;	// Selected Character: Data from Scriptable Object
 
+	[HideInInspector] public bool Attacking;	// Player is currently attacking
+
+	#region Movement
 	[SerializeField] private float _MaxSpeed = 10f;					// Fastest Speed the player can move horizontally
 	[SerializeField][Range(1, 10)] private float _JumpVelocity;		// Force which determines how high the player can jump
 	private const float _GravityScale = 1f;							// The degree to which the player is affected by gravity
 	private const float _FallMultiplier = 4.5f;						// Used for falling
 	private const float _LowJumpMultiplier = 2f;					// Used for lower jumping
 	[SerializeField] private bool _AirControl;						// Allows movement while not grounded
-	[SerializeField] private LayerMask _GroundMask;					// Determines masks used for ground (check)
+	private bool _FacingRight = true;								// Determines which way the player is facing
+	#endregion
 
-	private bool _Grounded;								// Does the player collide with a ground object
+	#region Check for objects
+	[SerializeField] private LayerMask _GroundMask;		// Determines masks used for ground (check)
+	[HideInInspector] public bool _Grounded;			// Does the player collide with a ground object
 	[SerializeField] private Transform _GroundCheck;	// Child transform marking the position where to check if the player is grounded
 	private const float _GroundCheckRadius = 0.2f;		// Radius of the overlap circle for ground check
 	[SerializeField] private Transform _CeilingCheck;	// Child transform marking the position where to check if the player can stand up
 	private const float _CeilingCheckRadius = 0.01f;	// Radius of the overlap circle for ceiling check
-	private bool _FacingRight = true;					// Determines which way the player is facing
+	#endregion
 
 	private Rigidbody2D _Rigidbody;
 	[HideInInspector] public Animator Animator;
 
 	private string _JumpButton { get { return "Jump_" + PlayerNum; } }
-
+	#endregion
 
 	private void Awake() {
 		// Setting up References (Cache)
-//		_GroundCheck = transform.GetChild (0);
-//		_CeilingCheck = transform.GetChild (1);
 		_Rigidbody = GetComponent<Rigidbody2D> ();
 		Animator = GetComponent<Animator> ();
 
