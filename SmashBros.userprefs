@@ -1,0 +1,19 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Abilities\Block.cs">
+    <Files>
+      <File FileName="Assets\Scripts\GameManager.cs" Line="16" Column="32" />
+      <File FileName="Assets\Scripts\Character.cs" Line="39" Column="21" />
+      <File FileName="Assets\Scripts\UserControl.cs" Line="27" Column="39" />
+      <File FileName="Assets\Scripts\Abilities\Ability.cs" Line="49" Column="2" />
+      <File FileName="Assets\Scripts\Abilities\JumpAttack.cs" Line="13" Column="1" />
+      <File FileName="Assets\Scripts\Abilities\Attack.cs" Line="16" Column="2" />
+      <File FileName="Assets\Scripts\StateMashine\Idle.cs" Line="9" Column="35" />
+      <File FileName="Assets\Scripts\Abilities\Block.cs" Line="25" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
