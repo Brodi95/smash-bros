@@ -6,6 +6,7 @@ public abstract class Ability : MonoBehaviour {
 
 	[SerializeField] protected BaseAbility _AbilityData;	// The scriptable object containing relevant data
 
+	protected Abilities _AbilityName;
 	protected float _Damage;					// The amount of damage the players base attack does
 	protected float _Cooldown;					// The time before the attack can be used again
 	protected float _CurrentCooldown;
@@ -28,12 +29,14 @@ public abstract class Ability : MonoBehaviour {
 		// If the the ability button is hold down
 		// and the player isn't already attacking
 		// and the ability is off cooldown
-		if (Input.GetButton (_AbilityButton) && !_Character.Attacking && !_OnCooldown) {
+		if (Input.GetButton (_AbilityButton) /* && !_Character.Attacking */
+			&& !_OnCooldown) {
 			UseAbility ();
 		}
 	}
 
 	protected void UseAbility() {
+		_Character.CurrentAbility = _AbilityName;
 		// Use ability
 		OnAbilityUsed();
 		// Start cooldown timer
@@ -49,14 +52,17 @@ public abstract class Ability : MonoBehaviour {
 		Debug.Log ("Ability used");
 	}
 
-	protected virtual void OnAnimationFinished() {
-		Debug.Log ("Animation finished");
+	protected void OnAnimationFinished() {
+
+		if (_Character.CurrentAbility != _AbilityName)
+			return;
+		_Character.CurrentAbility = Abilities.None;
+		
+		Debug.Log (_AbilityName + " finnished");
 		StopAbility ();
 	}
 
-	protected void StopAbility() {
-		_Character.Animator.SetBool (_AbilityData.Event, false);
-	}
+	protected abstract void StopAbility ();
 
 	protected IEnumerator RunCooldown() {
 		while (_OnCooldown) {
@@ -65,4 +71,23 @@ public abstract class Ability : MonoBehaviour {
 		}
 
 	}
+
+	protected void CircleAttack (float attackRadius) {
+		Debug.Log ("CircleAttack");
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position , attackRadius);
+		foreach (var collider in colliders) {
+			if (collider.tag == "Player" && collider.gameObject != gameObject) {
+				Character character = collider.gameObject.GetComponent<Character> ();
+				character.UpdateHealthpoints (- _AbilityData.Damage);
+			}
+		}
+	}
+}
+
+public enum Abilities {
+	None,
+	Attack,
+	Block,
+	JumpAttack,
+	Dash
 }

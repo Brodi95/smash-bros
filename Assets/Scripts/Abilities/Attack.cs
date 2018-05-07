@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Attack : Ability {
 
+	void Start() {
+		_AbilityName = Abilities.Attack;
+	}
 
 	protected override void Update ()
 	{
@@ -12,6 +15,12 @@ public class Attack : Ability {
 		if (Input.GetButtonUp (_AbilityButton)) {
 			_Character.Animator.SetBool (_AbilityData.Event, false);
 		}
+	}
+
+	protected override void StopAbility ()
+	{
+		CircleAttack (20f);
+		_Character.Animator.SetBool (_AbilityData.Event, false);
 	}
 
 }

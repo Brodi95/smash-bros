@@ -8,7 +8,20 @@ public class Character : MonoBehaviour {
 	public string PlayerNum = "P1";			// The number of the controller
 	public BaseCharacter _CharacterData;	// Selected Character: Data from Scriptable Object
 
-	[HideInInspector] public bool Attacking;	// Player is currently attacking
+	[HideInInspector] public bool Attacking {
+		get { return !(CurrentAbility == Abilities.None); }
+	}									// Player is currently attacking
+	 public Abilities CurrentAbility;	// The ability currently animating
+
+	[HideInInspector] public float MaxHealthpoints = 100f;
+	[HideInInspector] public float CurrentHealthpoints; 
+
+	#region Delegates
+	public delegate void UpdatingUI();
+	public UpdatingUI UpdateUI;
+	public delegate void Flipping ();
+	public Flipping Flip; 
+	#endregion
 
 	#region Movement
 	[SerializeField] private float _MaxSpeed = 10f;					// Fastest Speed the player can move horizontally
@@ -39,12 +52,18 @@ public class Character : MonoBehaviour {
 		// Setting up References (Cache)
 		_Rigidbody = GetComponent<Rigidbody2D> ();
 		Animator = GetComponent<Animator> ();
+		Flip += FlipCharacter;
 
-//		// Initialize abilities
-//		var abilities = GetComponents<Ability> ();
-//		foreach (var ability in abilities) {
-//			ability.Initialize ();
-//		}
+	}
+
+	private void Start() {
+		CurrentHealthpoints = MaxHealthpoints;
+	}
+
+	private void Update() {
+	// Test purpose
+		if (Input.GetKeyDown (KeyCode.F))
+			UpdateHealthpoints (-20f);
 	}
 
 	private void FixedUpdate() {
@@ -96,7 +115,7 @@ public class Character : MonoBehaviour {
 	}
 
 	// Flipping the player horizontally
-	private void Flip() {
+	private void FlipCharacter() {
 		// Inverting the bool labelling the players facing
 		_FacingRight = !_FacingRight;
 
@@ -105,4 +124,16 @@ public class Character : MonoBehaviour {
 		localScale.x *= -1;
 		transform.localScale = localScale;
 	}
+
+	public void UpdateHealthpoints(float value) {		
+		CurrentHealthpoints += value;
+		// Make sure the current healthpoints can't be higher than the max value
+		if (CurrentHealthpoints > MaxHealthpoints)
+			CurrentHealthpoints = MaxHealthpoints;
+
+		// Update Healthbar
+		UpdateUI();
+
+	}
+		
 }
