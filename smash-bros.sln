@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "smash-bros", "Assembly-CSharp.csproj", "{D3021E26-70C8-61C0-EEFF-31ED0A1ED23E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "smash-bros", "Assembly-CSharp-Editor.csproj", "{B85A7D4E-C9B1-F7BE-6ED0-130028CA6A67}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3021E26-70C8-61C0-EEFF-31ED0A1ED23E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3021E26-70C8-61C0-EEFF-31ED0A1ED23E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3021E26-70C8-61C0-EEFF-31ED0A1ED23E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3021E26-70C8-61C0-EEFF-31ED0A1ED23E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B85A7D4E-C9B1-F7BE-6ED0-130028CA6A67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B85A7D4E-C9B1-F7BE-6ED0-130028CA6A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B85A7D4E-C9B1-F7BE-6ED0-130028CA6A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B85A7D4E-C9B1-F7BE-6ED0-130028CA6A67}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

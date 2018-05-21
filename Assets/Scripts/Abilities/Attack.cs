@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class Attack : Ability {
 
-	protected override void OnEnable() {
-		EventManager.StartListening (_AbilityData.Event, UseAbility);
-		EventManager.StartListening (_AbilityData.Event + "Stop", StopAbility);
+	void Start() {
+		_AbilityName = Abilities.Attack;
 	}
 
-	protected override void OnDisable() {
-		EventManager.StopListening (_AbilityData.Event, UseAbility);
-		EventManager.StopListening (_AbilityData.Event + "Stop", StopAbility);
+	protected override void Update ()
+	{
+		if(_Character._Grounded)
+		base.Update ();
+		if (Input.GetButtonUp (_AbilityButton)) {
+			_Character.Animator.SetBool (_AbilityData.Event, false);
+		}
 	}
 
-	protected override void OnAbilityUsed() {
-		_Character.Animator.SetTrigger (_AbilityData.Event);
+	protected override void StopAbility ()
+	{
+		FrontAttack (1.5f);
+		_Character.Animator.SetBool (_AbilityData.Event, false);
 	}
-
 
 }

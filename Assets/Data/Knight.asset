@@ -14,4 +14,4 @@ MonoBehaviour:
   Name: Knight
   HealthPoints: 100
   Abilities:
-  - {fileID: 11400000, guid: bf55c9b7eb45a5044a65d2753b09319b, type: 2}
+  - {fileID: 11400000, guid: 251be2921b72139499b7c45b7343820e, type: 2}

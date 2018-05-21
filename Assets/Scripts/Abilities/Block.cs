@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class Block : Ability {
 
-
-	protected override void OnEnable() {
-		EventManager.StartListening (_AbilityData.Event, UseAbility);
-		EventManager.StartListening (_AbilityData.Event + "Stop", StopAbility);
+	void Start() {
+		_AbilityName = Abilities.Block;
 	}
 
-	protected override void OnDisable() {
-		EventManager.StopListening (_AbilityData.Event, UseAbility);
-		EventManager.StopListening (_AbilityData.Event + "Stop", StopAbility);
+	protected override void Update ()
+	{
+		if (Input.GetButtonDown (_AbilityButton) ) {
+			UseAbility ();
+		}
+		if (Input.GetButtonUp (_AbilityButton)) {
+			StopAbility ();
+		}
 	}
 
-	protected override void OnAbilityUsed() {
-		_Character.Animator.SetFloat ("AnimationSpeed", 0.5f);
-		_Character.Animator.SetBool (_AbilityData.Event, true);
+	protected override void StopAbility ()
+	{
+		_Character.Animator.SetBool (_AbilityData.Event, false);
 	}
-
 
 }

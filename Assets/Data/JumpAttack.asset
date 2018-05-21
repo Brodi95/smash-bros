@@ -16,6 +16,6 @@ MonoBehaviour:
   ArtWork: {fileID: 0}
   Animation: {fileID: 0}
   SoundEffect: {fileID: 0}
-  Event: JumpAttack
+  Event: Fire1
   Damage: 0
   Cooldown: 1

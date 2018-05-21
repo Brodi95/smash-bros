@@ -19,22 +19,22 @@ public class PlayerController : MonoBehaviour {
 	private void Update() {
 		if (!_Jump) {
 			_Jump = Input.GetButtonDown (_JumpButton);
-			if (!GameManager.Instance.Attacking) {
-				if(Input.GetButton ("Fire1")) {
-					EventManager.TriggerEvent ("Fire1");
-				} else if (Input.GetButton ("Fire2")) {
-					EventManager.TriggerEvent ("Fire2");
-
-				} else if (Input.GetButtonUp ("Fire1")) {
-					EventManager.TriggerEvent ("Fire1Stop");
-				} else if (Input.GetButtonUp ("Fire2")) {
-					EventManager.TriggerEvent ("Fire2Stop");
-				}
-			}
+//			if (!GameManager.Instance.Attacking) {
+//				if(Input.GetButton ("Fire1")) {
+//					EventManager.TriggerEvent ("Fire1");
+//				} else if (Input.GetButton ("Fire2")) {
+//					EventManager.TriggerEvent ("Fire2");
+//
+//				} else if (Input.GetButtonUp ("Fire1")) {
+//					EventManager.TriggerEvent ("Fire1Stop");
+//				} else if (Input.GetButtonUp ("Fire2")) {
+//					EventManager.TriggerEvent ("Fire2Stop");
+//				}
+//			}
 		}
-		if (Input.GetButton ("Jump") && Input.GetButtonDown ("Fire1")) {
-			EventManager.TriggerEvent ("JumpAttack");
-		}
+//		if (Input.GetButton ("Jump") && Input.GetButtonDown ("Fire1")) {
+//			EventManager.TriggerEvent ("JumpAttack");
+//		}
 	}
 
 	// Use FixedUpdate for Physics
