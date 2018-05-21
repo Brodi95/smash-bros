@@ -19,7 +19,7 @@ public class Attack : Ability {
 
 	protected override void StopAbility ()
 	{
-		CircleAttack (20f);
+		FrontAttack (1.5f);
 		_Character.Animator.SetBool (_AbilityData.Event, false);
 	}
 

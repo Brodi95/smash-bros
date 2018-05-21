@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Blocked.cs" />
      <Compile Include="Assets\CharacterSelection.cs" />
      <Compile Include="Assets\ImportedAssets\Standard Assets\2D\Scripts\Camera2DFollow.cs" />
      <Compile Include="Assets\ImportedAssets\Standard Assets\2D\Scripts\CameraFollow.cs" />
@@ -103,6 +104,7 @@
      <Compile Include="Assets\Scripts\EventManager.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />
+     <Compile Include="Assets\Scripts\Math.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\BaseAbility.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\BaseCharacter.cs" />

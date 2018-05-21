@@ -30,7 +30,7 @@ public class Character : MonoBehaviour {
 	private const float _FallMultiplier = 4.5f;						// Used for falling
 	private const float _LowJumpMultiplier = 2f;					// Used for lower jumping
 	[SerializeField] private bool _AirControl;						// Allows movement while not grounded
-	private bool _FacingRight = true;								// Determines which way the player is facing
+	public bool FacingRight = true;								// Determines which way the player is facing
 	#endregion
 
 	#region Check for objects
@@ -96,11 +96,11 @@ public class Character : MonoBehaviour {
 			Animator.SetFloat ("Speed", Mathf.Abs (move));
 
 			// Flip the character if the player is moving left but facing right...
-			if (move < 0 && _FacingRight) {
+			if (move < 0 && FacingRight) {
 				Flip ();
 			} 
 			// ... or moving right but facing left
-			else if (move > 0 && !_FacingRight) {
+			else if (move > 0 && !FacingRight) {
 				Flip ();
 			}
 		}
@@ -117,7 +117,7 @@ public class Character : MonoBehaviour {
 	// Flipping the player horizontally
 	private void FlipCharacter() {
 		// Inverting the bool labelling the players facing
-		_FacingRight = !_FacingRight;
+		FacingRight = !FacingRight;
 
 		// Inverting the players horizontal scale
 		Vector3 localScale = transform.localScale;
@@ -135,5 +135,8 @@ public class Character : MonoBehaviour {
 		UpdateUI();
 
 	}
-		
+
+	public void Block() {
+		Animator.SetBool ("Blocked", true);
+	}
 }

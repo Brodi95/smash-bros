@@ -36,7 +36,7 @@ public abstract class Ability : MonoBehaviour {
 	}
 
 	protected void UseAbility() {
-		_Character.CurrentAbility = _AbilityName;
+//		_Character.CurrentAbility = _AbilityName;
 		// Use ability
 		OnAbilityUsed();
 		// Start cooldown timer
@@ -56,7 +56,7 @@ public abstract class Ability : MonoBehaviour {
 
 		if (_Character.CurrentAbility != _AbilityName)
 			return;
-		_Character.CurrentAbility = Abilities.None;
+//		_Character.CurrentAbility = Abilities.None;
 		
 		Debug.Log (_AbilityName + " finnished");
 		StopAbility ();
@@ -72,12 +72,23 @@ public abstract class Ability : MonoBehaviour {
 
 	}
 
-	protected void CircleAttack (float attackRadius) {
-		Debug.Log ("CircleAttack");
+	protected void FrontAttack (float attackRadius) {
+		Debug.Log ("FrontAttack");
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position , attackRadius);
 		foreach (var collider in colliders) {
 			if (collider.tag == "Player" && collider.gameObject != gameObject) {
+				// Only attack objects infront of the player
+				if(!Math.IsLookingAtObject(transform, collider.transform, 30f, _Character.FacingRight)) {
+					continue; 
+				}
+
 				Character character = collider.gameObject.GetComponent<Character> ();
+				// Only apply damage if opponent isn't blocking
+				if (character.CurrentAbility == Abilities.Block) {
+					character.Block ();
+					continue;
+				}
+
 				character.UpdateHealthpoints (- _AbilityData.Damage);
 			}
 		}
